@@ -13,7 +13,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango: Spacemono Nerd Font 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -36,8 +36,8 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -115,9 +115,9 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: General"
-set $ws2 "2: FireFox"
-set $ws3 "3: Coding"
+set $ws1 "1: FireFox"
+set $ws2 "2"
+set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
@@ -151,7 +151,8 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # Assign workspace to applications
-assign [class="firefox"] $ws2
+assign [class="firefox"] $ws1
+assign [class="Spotify"] $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -226,15 +227,3 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 default_border pixel 1
 default_floating_border pixel 1
 
-# Inner gaps for all windows: space between two adjacent windows (or split containers).
-# gaps inner 1px
-
-# Outer gaps for all windows: space along the screen edges.
-# gaps outer 2px
-
-# Enabling “Smart Gaps” means no gaps will be shown when there is
-# precisely one window or split container on the workspace.
-#
-# inverse_outer only enables outer gaps when there is exactly one
-# window or split container on the workspace.
-# smart_gaps inverse_outer
